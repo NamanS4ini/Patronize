@@ -4,7 +4,7 @@ const HomePage = () => {
   return (
     <>
       <div className="flex justify-center">
-        <div className="h-90 pt-14 pb-5 flex flex-col justify-center items-center gap-4">
+        <div className="h-[575px] px-14 flex flex-col justify-center items-center gap-4">
           <span className="font-bold p-4 text-5xl">Patronize</span>
           <p className="text-xl">
             A crowdfunding platform for creators to fund their projects.
@@ -28,7 +28,7 @@ const HomePage = () => {
         </div>
       </div>
       <div className="h-1 w-[95%] mx-auto bg-blue-950"></div>
-      <div className="flex flex-col gap-10 items-center justify-center py-5">
+      <div className="flex flex-col gap-20 items-center justify-center py-20">
         <h1 className="text-2xl font-bold">Get Paid for your Contribution</h1>
         <div className="flex justify-around mx-auto w-[90%] max-w-screen-2xl">
           <span className="flex flex-col gap-3 items-center">
@@ -67,7 +67,7 @@ const HomePage = () => {
         </div>
       </div>
       <div className="h-1 w-[95%] mx-auto mt-10 bg-blue-950"></div>
-      <div className="flex flex-col gap-10 items-center justify-center py-10">
+      <div className="flex flex-col gap-20 items-center justify-center py-20">
         <h1 className="text-2xl font-bold">Learn More About Us</h1>
         <div className="flex justify-around mx-auto w-[90%] max-w-screen-2xl">
           <span className="flex flex-col gap-3 items-center">
