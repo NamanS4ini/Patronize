@@ -4,7 +4,6 @@ import { useSession, signIn, signOut } from "next-auth/react"
 const Login = () => {
     const { data: session } = useSession()
     if(session) {
-        console.log(session.user);
         return <>
         <div className="flex flex-col justify-center min-h-[calc(100vh-128px)] gap-20 items-center">
 
