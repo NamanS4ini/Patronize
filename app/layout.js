@@ -29,7 +29,7 @@ export default function RootLayout({ children }) {
         <SessionWrapper>
 
         <Navbar />
-        <div className="relative overflow-x-hidden text-white">
+        <div className="relative min-h-[calc(100vh-128px)] overflow-x-hidden text-white">
         <div className="absolute top-0 z-[-2] h-full w-screen bg-neutral-950 bg-[radial-gradient(ellipse_80%_80%_at_50%_-20%,rgba(120,119,198,0.3),rgba(255,255,255,0))]"></div>
         
         {children}

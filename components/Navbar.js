@@ -17,7 +17,7 @@ const Navbar = () => {
         </div>
       </Link>
       <div className="flex gap-5 justify-center items-center h-full">
-        {session && <span>Hello {session.user.name}</span>}
+        {session && <span>Hello <Link className="hover:text-blue-400 text-blue-200 underline" href={"/profile"}>{session.user.name}</Link></span>}
         <Link href={"/login"}>
           {!session ? (
             <button className="relative inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm font-bold text-gray-900 rounded-lg group bg-gradient-to-br from-green-400 to-blue-600 group-hover:from-green-400 group-hover:to-blue-600 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800">

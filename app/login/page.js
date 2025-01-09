@@ -29,7 +29,7 @@ Log Out
         <h1 className="text-3xl text-center mt-10 font-bold">Login to Patronize</h1>
       <div className="loginbutton flex justify-center">
         <div className="flex flex-col gap-2 w-96 p-10">
-          <button  onClick={()=>signIn("github")} className="flex items-center bg-gray-800 border border-gray-500 text-white rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium hover:bg-gray-950 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-950">
+          <button  onClick={()=>signIn("google")} className="flex items-center bg-gray-800 border border-gray-500 text-white rounded-lg shadow-md max-w-xs px-6 py-2 text-sm font-medium hover:bg-gray-950 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-950">
             <svg
               className="h-6 w-6 mr-2"
               xmlns="http://www.w3.org/2000/svg"
