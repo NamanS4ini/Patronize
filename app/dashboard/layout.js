@@ -1,7 +1,8 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";import { useSession } from "next-auth/react";
+import { usePathname } from "next/navigation";
+import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
 
 const layout = ({ children }) => {
@@ -36,7 +37,7 @@ const layout = ({ children }) => {
         <div className="w-px rounded-lg bg-blue-300 h-[60%]"></div>
         <Link
           className="w-1/2 flex justify-center"
-          href={"/dashboard/yourpage"}
+          href={`/${session.user.name}`}
         >
           <div
             className={

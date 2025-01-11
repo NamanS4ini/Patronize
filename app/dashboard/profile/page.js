@@ -2,10 +2,28 @@
 import React from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 const Profile = () => {
   const { data: session, status } = useSession();
   const router = useRouter();
   
+  // const [user, setUser] = useState([]);
+
+  // useEffect(() => {
+  //   const fetchUsers = async () => {
+  //     const res = await fetch("../api/userUpdate", {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //       },
+  //       body: JSON.stringify({ email: session.user.email }),
+  //     });
+  //     const data = await res.json();
+  //     setUser(data);
+  //   };
+
+  //   fetchUsers();
+  // }, []);
 
   // If the session is loading, show a loading state
   if (status === "loading") {
@@ -17,11 +35,12 @@ const Profile = () => {
     router.push("/login");
     return null; // Ensure nothing is rendered during the redirect
   }
-  console.log(session.user.email);
 
   // If the session is available, render the profile page
   return (
     <div className="min-h-screen">
+      <form action="">
+
       <div className="flex flex-col items-center gap-4 justify-center h-full">
         <h1 className="text-3xl font-bold mt-10">Profile</h1>
         <p className="text-xl font-bold">Welcome, {session.user.name}!</p>
@@ -36,7 +55,7 @@ const Profile = () => {
             defaultValue={session.user.name}
             type="text"
             id="Name"
-          />
+            />
         </div>
         <div className="flex flex-col ">
           <label className="w-fit" htmlFor="Email">
@@ -48,7 +67,7 @@ const Profile = () => {
             disabled
             type="text"
             id="Email"
-          />
+            />
         </div>
         <div className="flex flex-col ">
           <label className="w-fit" htmlFor="Username">
@@ -59,7 +78,7 @@ const Profile = () => {
             defaultValue={session.user.name}
             type="text"
             id="Username"
-          />
+            />
         </div>
         <div className="flex flex-col ">
           <label className="w-fit" htmlFor="pfp">
@@ -69,7 +88,7 @@ const Profile = () => {
             className="bg-[#414248] rounded-lg outline-none p-2 focus:border-blue-900 focus:border-2 h-8 w-96"
             type="text"
             id="pfp"
-          />
+            />
         </div>
         <div className="flex flex-col ">
           <label className="w-fit" htmlFor="cover">
@@ -89,7 +108,7 @@ const Profile = () => {
             className="bg-[#414248] rounded-lg outline-none p-2 focus:border-blue-900 focus:border-2 h-8 w-96"
             type="text"
             id="RazorPayId"
-          />
+            />
         </div>
         <div className="flex flex-col ">
           <label className="w-fit" htmlFor="RazorPaySecret">
@@ -101,7 +120,9 @@ const Profile = () => {
             id="RazorPaySecret"
           />
         </div>
+      <button type="submit" className="py-2 px-6 mt-2 bg-[#414248] rounded-lg">Save</button>
       </div>
+            </form>
     </div>
   );
 };

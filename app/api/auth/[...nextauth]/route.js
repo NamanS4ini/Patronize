@@ -1,7 +1,7 @@
 import NextAuth from "next-auth"
 import GithubProvider from "next-auth/providers/github"
 import GoogleProvider from 'next-auth/providers/google'
-import mongoose from "mongoose"
+import connectDB from "@/DB/connectDB"
 import User from "@/models/user"
 import Payment from "@/models/payment"
 export const authOptions = NextAuth( {
@@ -21,7 +21,7 @@ export const authOptions = NextAuth( {
     async signIn({ user, account, profile, email, credentials }) {
       if (account.provider === 'google' || account.provider === 'github') {
         //connect to database
-        const client = await mongoose.connect( process.env.MONGODB_URI)
+        await connectDB()
         const currentUser = await User.findOne({email: profile.email})
         console.log(currentUser);
         // console.log(currentUser);
@@ -33,11 +33,11 @@ export const authOptions = NextAuth( {
             username: user.email.split('@')[0]
           })
           await newUser.save()
-          user.name = newUser.name
+          user.name = newUser.username
         }
         else{
           console.log("Current");
-          user.name = currentUser.name
+          user.name = currentUser.username
         }
 
         return true
