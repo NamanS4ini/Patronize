@@ -1,8 +1,23 @@
 "use client";
 import React from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname } from "next/navigation";import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
+
 const layout = ({ children }) => {
+    const { data: session, status } = useSession();
+    const router = useRouter();
+  
+    // If the session is loading, show a loading state
+    if (status === "loading") {
+      return <div>Loading...</div>;
+    }
+  
+    // If the session is not available, redirect to the login page
+    if (!session) {
+      router.push("/login");
+      return null; // Ensure nothing is rendered during the redirect
+    }
   const pathname = usePathname();
   return (
     <div>
