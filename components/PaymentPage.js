@@ -3,8 +3,12 @@ import React from "react";
 import Script from "next/script";
 import Image from "next/image";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { initiate } from "@/action/userActions";
 const PaymentPage = ({ params }) => {
+  const { data: session, status } = useSession();
+    const router = useRouter();
   const [paymentForm, setPaymentForm] = useState({
     name: "",
     message: "",
@@ -12,6 +16,10 @@ const PaymentPage = ({ params }) => {
   });
   console.log(paymentForm);
   const pay = async (amount) => {
+    if (!session) {
+        router.push("/login");
+        return null; // Ensure nothing is rendered during the redirect
+      }
     console.log(amount);
     let a = await initiate(amount*100, params.username, paymentForm);
     let oid = a.id;
@@ -26,9 +34,8 @@ const PaymentPage = ({ params }) => {
       callback_url: "http://localhost:3000/api/razorpay",
       prefill: {
         //We recommend using the prefill parameter to auto-fill customer's contact information especially their phone number
-        name: "Gaurav Kumar", //your customer's name
-        email: "gaurav.kumar@example.com",
-        contact: "9000090000", //Provide the customer's phone number for better conversion rates
+        name: session.user.name, //your customer's name
+        email: session.user.email,
       },
       notes: {
         address: "Razorpay Corporate Office",
