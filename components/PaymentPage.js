@@ -146,7 +146,7 @@ const PaymentPage = ({ params }) => {
                 <button
                   onClick={() => {
                     setPaymentForm({ ...paymentForm, amount: "10" });
-                    if (paymentForm.name ==="" || paymentForm.message ==="" || paymentForm.amount ==="") {
+                    if (paymentForm.name ==="" || paymentForm.message ==="") {
                         
                     }
                     else{
@@ -162,7 +162,7 @@ const PaymentPage = ({ params }) => {
                 <button
                   onClick={() => {
                     setPaymentForm({ ...paymentForm, amount: "20" });
-                    if (paymentForm.name ==="" || paymentForm.message ==="" || paymentForm.amount ==="") {
+                    if (paymentForm.name ==="" || paymentForm.message ==="") {
                         
                     }
                     else{
@@ -178,7 +178,7 @@ const PaymentPage = ({ params }) => {
                 <button
                   onClick={() => {
                     setPaymentForm({ ...paymentForm, amount: "30" });
-                    if (paymentForm.name ==="" || paymentForm.message ==="" || paymentForm.amount ==="") {
+                    if (paymentForm.name ==="" || paymentForm.message ==="") {
                         
                     }
                     else{
