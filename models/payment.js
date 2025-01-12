@@ -4,7 +4,7 @@ const { Schema, model } = mongoose;
 
 const paymentSchema = new Schema({
     name:{ type: String, required: true },
-    to:{ type: String, required: true },
+    toUser:{ type: String, required: true },
     oid:{ type: String, required: true },
     message:{ type: String, required: true },
     amount:{ type: Number, required: true },
