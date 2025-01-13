@@ -1,11 +1,11 @@
 "use client";
-import React from "react";
+import React, { useEffect } from "react";
 import Script from "next/script";
 import Image from "next/image";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { initiate } from "@/action/userActions";
+import { initiate, fetchUser, fetchPayments } from "@/action/userActions";
 const PaymentPage = ({ params }) => {
   const { data: session, status } = useSession();
     const router = useRouter();
@@ -13,7 +13,21 @@ const PaymentPage = ({ params }) => {
     name: "",
     message: "",
     amount: "",
-  });
+  }); 
+  const [User, setUser] = useState()
+  const [Payment, setPayment] = useState([])
+  useEffect(() => {
+    getData()
+  }, [])
+  
+
+async function getData() {
+    let u = await fetchUser(params.username)
+    setUser(u)
+    let dbpayments = await fetchPayments(params.username)
+    setPayment(dbpayments)
+}
+
   console.log(paymentForm);
   const pay = async (amount) => {
     if (!session) {
