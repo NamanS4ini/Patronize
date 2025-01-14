@@ -18,33 +18,50 @@ async function initiate(amount, toUser, Paymentform) {
   };
   let x = await instance.orders.create(options);
 
-  await payment.create({oid: x.id, amount: amount, toUser: toUser, name: Paymentform.name, message: Paymentform.message, done: false});
-  return x
+  await payment.create({
+    oid: x.id,
+    amount: amount,
+    toUser: toUser,
+    name: Paymentform.name,
+    message: Paymentform.message,
+    done: false,
+  });
+  return x;
 }
 
 async function fetchUser(username) {
-    await connectDB()
-    let u = await User.findOne({username: username})
-    if (!u) {
-      return null
-    }
-    let user = u.toObject({flattenObjectIds: true})
-    return user
+  await connectDB();
+  console.log(username);
+  let u = await User.findOne({ username: username });
+  if (!u) {
+    return null;
+  }
+  let user = u.toObject({ flattenObjectIds: true });
+  return user;
 }
 
 async function fetchPayments(username) {
-    await connectDB()
-    let payments = await payment.find({ toUser: username }).sort({ amount: -1 }).lean();
+  await connectDB();
+  let payments = await payment
+    .find({ toUser: username })
+    .sort({ amount: -1 })
+    .lean();
 
-    // Convert _id to string for each document
-    payments = payments.map((doc) => ({
-      ...doc,
-      _id: doc._id.toString(),
-    }));
-    
-    return payments;
+  // Convert _id to string for each document
+  payments = payments.map((doc) => ({
+    ...doc,
+    _id: doc._id.toString(),
+  }));
+
+  return payments;
 }
 
-export {initiate as "initiate"}
-export {fetchUser as "fetchUser"}
-export {fetchPayments as "fetchPayments"}
+async function UpdateUser(username, data) {
+  await connectDB();
+  let u = await fetchUser(username);
+}
+
+export { initiate as "initiate" };
+export { fetchUser as "fetchUser" };
+export { UpdateUser as "UpdateUser" };
+export { fetchPayments as "fetchPayments" };

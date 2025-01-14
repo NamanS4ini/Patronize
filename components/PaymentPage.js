@@ -141,7 +141,7 @@ const PaymentPage = ({ params }) => {
         <div className="paymentArea pb-10 flex gap-9 justify-center ">
           <div className="suppoters max-w-[700px]  w-1/2">
             <ul className="border-2 flex flex-col gap-5 h-full max-h-96 overflow-x-hidden overflow-scroll w-full border-[#414248] rounded-lg p-4">
-              {Payment.map((pay) => {
+              {Payment.length >= 1? Payment.map((pay) => {
                 return (
                   <li className="flex items-center gap-5 ">
                     <span className="w-1/3 min-w-40">
@@ -154,7 +154,12 @@ const PaymentPage = ({ params }) => {
                     <span className=" text-gray-300">{pay.message}</span>
                   </li>
                 );
-              })}
+              }):
+                <li className="flex h-full items-center justify-center gap-5 ">
+                  <span className="text-gray-400">No Payment Yep. Be the first to make a Payment! :)</span>
+              </li>
+              }
+              
 
               {/* <li className="flex items-center gap-5 ">
                 <span className="w-1/3 min-w-40">
