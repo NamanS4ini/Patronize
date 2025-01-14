@@ -30,7 +30,7 @@ export const POST = async (req) => {
       { done: true },
       { new: true }
     );
-    return NextResponse.redirect(`localhost:3000/${updatedPayment.toUser}?paymentDone=true`);
+    return NextResponse.redirect(`http://localhost:3000/${updatedPayment.toUser}?paymentDone=true`);
   }
   else{
     return NextResponse.json({succes: false, message:"Payment Verification failed"});

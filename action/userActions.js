@@ -25,14 +25,24 @@ async function initiate(amount, toUser, Paymentform) {
 async function fetchUser(username) {
     await connectDB()
     let u = await User.findOne({username: username})
+    if (!u) {
+      return null
+    }
     let user = u.toObject({flattenObjectIds: true})
     return user
 }
 
 async function fetchPayments(username) {
     await connectDB()
-    let p = await payment.find({toUser: username}).sort({amount: -1}).lean()
-    return p
+    let payments = await payment.find({ toUser: username }).sort({ amount: -1 }).lean();
+
+    // Convert _id to string for each document
+    payments = payments.map((doc) => ({
+      ...doc,
+      _id: doc._id.toString(),
+    }));
+    
+    return payments;
 }
 
 export {initiate as "initiate"}
