@@ -43,7 +43,7 @@ async function fetchUser(username) {
 async function fetchPayments(username) {
   await connectDB();
   let payments = await payment
-    .find({ toUser: username })
+    .find({ toUser: username, done: true })
     .sort({ amount: -1 })
     .lean();
 
