@@ -21,6 +21,15 @@ const userSchema = new Schema({
   coverPicture: {
     type: String,
   },
+  desc: {
+    type: String,
+  },
+  razorPayid:{
+    type: String
+  },
+  razorPaySecrete:{
+    type: String
+  }
 });
 
 export default mongoose.models.User || model("User", userSchema);

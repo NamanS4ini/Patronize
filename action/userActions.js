@@ -68,6 +68,7 @@ async function UpdateUser(username,email, data) {
     }
   }
   await User.updateOne({email: email}, ndata)
+  return { success: true, message: "User updated successfully" };
 }
 
 export { initiate as "initiate" };

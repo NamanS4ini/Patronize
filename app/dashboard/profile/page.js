@@ -34,9 +34,8 @@ const Profile = () => {
     return null; // Ensure nothing is rendered during the redirect
   }
   const handelSubmit = async (e)=>{
-    update()
-    console.log(e);
     let a= await UpdateUser( session.user.name,session.user.email,e)
+    await update()
     console.log(a);
   }
 
@@ -70,6 +69,7 @@ const Profile = () => {
               className="bg-[#646566] rounded-lg outline-none p-2 focus:border-blue-900 focus:border-2 h-8 w-96"
               value={User.email}
               name="email"
+              disabled
               onChange={handelChange}
               type="text"
               id="Email"
@@ -115,12 +115,28 @@ const Profile = () => {
             />
           </div>
           <div className="flex flex-col ">
+            <label className="w-fit" htmlFor="desc">
+              Description
+            </label>
+            <input
+              className="bg-[#414248] rounded-lg outline-none p-2 focus:border-blue-900 focus:border-2 h-8 w-96"
+              value={User.desc}
+              type="text"
+              onChange={handelChange}
+              name="desc"
+              id="desc"
+            />
+          </div>
+          <div className="flex flex-col ">
             <label className="w-fit" htmlFor="RazorPayId">
               RazorPay Id
             </label>
             <input
               className="bg-[#414248] rounded-lg outline-none p-2 focus:border-blue-900 focus:border-2 h-8 w-96"
               type="text"
+              name="razorPayid"
+              onChange={handelChange}
+              value={User.razorPayid}
               id="RazorPayId"
             />
           </div>
@@ -131,6 +147,9 @@ const Profile = () => {
             <input
               className="bg-[#414248] rounded-lg outline-none p-2 focus:border-blue-900 focus:border-2 h-8 w-96"
               type="text"
+              name="razorPaySecrete"
+              onChange={handelChange}
+              value={User.razorPaySecrete}
               id="RazorPaySecret"
             />
           </div>
