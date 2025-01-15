@@ -6,23 +6,22 @@ import { useEffect, useState } from "react";
 import { UpdateUser } from "@/action/userActions";
 import { fetchUser } from "@/action/userActions";
 const Profile = () => {
-  const { data: session, status } = useSession();
+  const { data: session, status, update } = useSession();
+  console.log(session.user.name);
   const router = useRouter();
   const [User, setUser] = useState({});
   async function getData() {
     let u =await fetchUser(session.user.name);
     setUser(u);
   }
+  const handelChange = (e)=>{
+    setUser({...User, [e.target.name]:e.target.value})
+  }
   useEffect(() => {
     if (status === 'authenticated') {
-      (async () => {
-        const u = await fetchUser(session.user.name);
-        setUser(u);
-      })();
+      getData()
     }
   }, [status]);
-  
-  console.log(User);
 
   // If the session is loading, show a loading state
   if (status === "loading" || User == {}) {
@@ -34,11 +33,17 @@ const Profile = () => {
     router.push("/login");
     return null; // Ensure nothing is rendered during the redirect
   }
+  const handelSubmit = async (e)=>{
+    update()
+    console.log(e);
+    let a= await UpdateUser( session.user.name,session.user.email,e)
+    console.log(a);
+  }
 
   // If the session is available, render the profile page
   return (
     <div className="min-h-screen">
-      <form action="">
+      <form action={handelSubmit}>
         <div className="flex flex-col items-center gap-4 justify-center h-full">
           <h1 className="text-3xl font-bold mt-10">Profile</h1>
           <p className="text-xl font-bold">Welcome, {User.name}!</p>
@@ -50,7 +55,9 @@ const Profile = () => {
             </label>
             <input
               className="bg-[#414248] rounded-lg outline-none p-2 focus:border-blue-900 focus:border-2 h-8 w-96"
-              defaultValue={User.name}
+              value={User.name}
+              name="name"
+              onChange={handelChange}
               type="text"
               id="Name"
             />
@@ -61,8 +68,9 @@ const Profile = () => {
             </label>
             <input
               className="bg-[#646566] rounded-lg outline-none p-2 focus:border-blue-900 focus:border-2 h-8 w-96"
-              defaultValue={User.email}
-              disabled
+              value={User.email}
+              name="email"
+              onChange={handelChange}
               type="text"
               id="Email"
             />
@@ -73,7 +81,9 @@ const Profile = () => {
             </label>
             <input
               className="bg-[#414248] rounded-lg outline-none p-2 focus:border-blue-900 focus:border-2 h-8 w-96"
-              defaultValue={User.username}
+              value={User.username}
+              name="username"
+              onChange={handelChange}
               type="text"
               id="Username"
             />
@@ -84,7 +94,9 @@ const Profile = () => {
             </label>
             <input
               className="bg-[#414248] rounded-lg outline-none p-2 focus:border-blue-900 focus:border-2 h-8 w-96"
-              defaultValue={User.profilePicture}
+              value={User.profilePicture}
+              onChange={handelChange}
+              name="profilePicture"
               type="text"
               id="pfp"
             />
@@ -95,8 +107,10 @@ const Profile = () => {
             </label>
             <input
               className="bg-[#414248] rounded-lg outline-none p-2 focus:border-blue-900 focus:border-2 h-8 w-96"
-              defaultValue={User.coverPicture}
+              value={User.coverPicture}
               type="text"
+              onChange={handelChange}
+              name="coverPicture"
               id="cover"
             />
           </div>
@@ -121,9 +135,6 @@ const Profile = () => {
             />
           </div>
           <button
-            onClick={() => {
-              UpdateUser();
-            }}
             type="submit"
             className="py-2 px-6 mt-2 bg-[#414248] rounded-lg"
           >

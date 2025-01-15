@@ -3,6 +3,7 @@ import Razorpay from "razorpay";
 import payment from "@/models/payment";
 import connectDB from "@/DB/connectDB";
 import User from "@/models/user";
+import user from "@/models/user";
 
 async function initiate(amount, toUser, Paymentform) {
   console.log(toUser);
@@ -31,7 +32,6 @@ async function initiate(amount, toUser, Paymentform) {
 
 async function fetchUser(username) {
   await connectDB();
-  console.log(username);
   let u = await User.findOne({ username: username });
   if (!u) {
     return null;
@@ -56,9 +56,18 @@ async function fetchPayments(username) {
   return payments;
 }
 
-async function UpdateUser(username, data) {
+async function UpdateUser(username,email, data) {
   await connectDB();
-  let u = await fetchUser(username);
+  console.log(data);
+  let ndata = Object.fromEntries(data);
+  console.log(ndata);
+  if (username !== ndata.username) {
+    let u = await User.findOne({ username: ndata.username });
+    if (u) {
+      return { error: "Username already exists" };
+    }
+  }
+  await User.updateOne({email: email}, ndata)
 }
 
 export { initiate as "initiate" };
