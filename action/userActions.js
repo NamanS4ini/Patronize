@@ -7,7 +7,8 @@ import user from "@/models/user";
 
 async function initiate(amount, toUser, Paymentform) {
   console.log(toUser);
-  await connectDB();
+  try {
+    await connectDB();
   let u =await user.findOne({username: toUser})
   var instance = new Razorpay({
     key_id: u.razorPayid,
@@ -29,6 +30,10 @@ async function initiate(amount, toUser, Paymentform) {
     done: false,
   });
   return x;
+  } catch (error) {
+    return error
+  }
+  
 }
 
 async function fetchUser(username) {

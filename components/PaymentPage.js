@@ -5,7 +5,7 @@ import Image from "next/image";
 import { ToastContainer,toast, Bounce} from "react-toastify";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
-import { useRouter } from "next/navigation";
+import { useRouter, notFound } from "next/navigation";
 import { initiate, fetchUser, fetchPayments } from "@/action/userActions";
 const PaymentPage = ({ params }) => {
   const { data: session, status } = useSession();
@@ -66,6 +66,22 @@ const PaymentPage = ({ params }) => {
     }
     
     let a = await initiate(amount * 100, params.username, paymentForm);
+    console.log(a);
+    if (a.statusCode == 401) {
+      toast.error(`${a.error.description}. User's RazorPay secret or Id may be invalid`, {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
+      return null
+    }
+    
     let oid = a.id;
     var options = {
       key: User.razorPayid, // Enter the Key ID generated from the Dashboard
@@ -100,11 +116,7 @@ const PaymentPage = ({ params }) => {
     );
   }
   if (User == null) {
-    return (
-      <>
-        <div>User Does not exist</div>
-      </>
-    );
+    return notFound();
   }
   console.log(User);
 
