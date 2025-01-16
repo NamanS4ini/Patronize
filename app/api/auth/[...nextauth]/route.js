@@ -22,7 +22,8 @@ export const authOptions = NextAuth( {
       if (account.provider === 'google' || account.provider === 'github') {
         //connect to database
         await connectDB()
-        const currentUser = await User.findOne({email: email})
+        console.log(profile.email);
+        const currentUser = await User.findOne({email: profile.email})
         console.log(currentUser);
         // console.log(currentUser);
         if(!currentUser){
