@@ -27,7 +27,7 @@ const Profile = () => {
   
   const handelSubmit = async (e)=>{
     let a= await UpdateUser( session.user.name,session.user.email,e)
-    await update()
+    update()
 
   }
 

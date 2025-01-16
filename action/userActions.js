@@ -8,9 +8,10 @@ import user from "@/models/user";
 async function initiate(amount, toUser, Paymentform) {
   console.log(toUser);
   await connectDB();
+  let u =await user.findOne({username: toUser})
   var instance = new Razorpay({
-    key_id: process.env.RAZORPAY_KEY,
-    key_secret: process.env.RAZORPAY_SECRET,
+    key_id: u.razorPayid,
+    key_secret: u.razorPaySecrete,
   });
 
   let options = {
@@ -68,6 +69,7 @@ async function UpdateUser(username,email, data) {
     }
   }
   await User.updateOne({email: email}, ndata)
+  await payment.updateMany({toUser: username}, {toUser: ndata.username})
   return { success: true, message: "User updated successfully" };
 }
 

@@ -51,7 +51,7 @@ const PaymentPage = ({ params }) => {
       return null; // Ensure nothing is rendered during the redirect
     }
     if (!User.razorPaySecrete || !User.razorPayid ) {
-      toast.error("User RazorPay Secret or Id is not set. Can not pay!", {
+      toast.error("User RazorPay Secret or Id is not set.  Can not pay!", {
         position: "top-right",
         autoClose: 5000,
         hideProgressBar: false,
@@ -144,6 +144,9 @@ const PaymentPage = ({ params }) => {
           <h1 className="text-3xl font-bold">{params.username}</h1>
           <p className="text-md text-[#efefef] ">
             {User.desc?User.desc:"No description"}
+          </p>
+          <p className="text-md text-[#efefef] ">
+            {Payment.length} Payments has raised  ₹{Payment.reduce((a,b)=> a+b.amount,0)/100}
           </p>
         </div>
         <div className="h-px bg-blue-600 rounded-full my-10 w-[90%] mx-auto"></div>

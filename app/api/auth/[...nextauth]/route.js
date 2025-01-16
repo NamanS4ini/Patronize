@@ -22,7 +22,7 @@ export const authOptions = NextAuth( {
       if (account.provider === 'google' || account.provider === 'github') {
         //connect to database
         await connectDB()
-        const currentUser = await User.findOne({email: profile.email})
+        const currentUser = await User.findOne({email: email})
         console.log(currentUser);
         // console.log(currentUser);
         if(!currentUser){
@@ -42,7 +42,12 @@ export const authOptions = NextAuth( {
 
         return true
       }
-    }
+    },
+    async session({ session, user, token }) {
+      const dbUser = await User.findOne({email: session.user.email})
+      session.user.name = dbUser.username
+      return session
+    },
   }
 })
 
