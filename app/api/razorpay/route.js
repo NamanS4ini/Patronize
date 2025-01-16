@@ -1,6 +1,7 @@
 import { NextResponse } from "next/server";
 import { validatePaymentVerification } from "razorpay/dist/utils/razorpay-utils";
 import payment from "@/models/payment";
+import user from "@/models/user";
 import Razorpay from "razorpay";
 import connectDB from "@/DB/connectDB";
 
@@ -10,6 +11,7 @@ export const POST = async (req) => {
   body = Object.fromEntries(body);
   console.log(body);
   let p = await payment.findOne({ oid: body.razorpay_order_id });
+  let u = await user.findOne({username: p.toUser})
 
   if (!p) {
     return NextResponse.json({succes: false, message:"Oid not found"});
@@ -21,7 +23,7 @@ export const POST = async (req) => {
       "payment_id": body.razorpay_payment_id,
     },
     body.razorpay_signature,
-    process.env.NEXT_PUBLIC_RAZORPAY_SECRET
+    u.razorPaySecrete
   );
 
   if (xx) {

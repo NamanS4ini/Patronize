@@ -24,23 +24,16 @@ const Profile = () => {
   }, [status]);
 
   // If the session is loading, show a loading state
-  if (status === "loading" || User == {}) {
-    return <div>Loading...</div>;
-  }
-
-  // If the session is not available, redirect to the login page
-  if (!session) {
-    router.push("/login");
-    return null; // Ensure nothing is rendered during the redirect
-  }
+  
   const handelSubmit = async (e)=>{
     let a= await UpdateUser( session.user.name,session.user.email,e)
     await update()
-    console.log(a);
+
   }
 
   // If the session is available, render the profile page
   return (
+    <>
     <div className="min-h-screen">
       <form action={handelSubmit}>
         <div className="flex flex-col items-center gap-4 justify-center h-full">
@@ -112,7 +105,7 @@ const Profile = () => {
               onChange={handelChange}
               name="coverPicture"
               id="cover"
-            />
+              />
           </div>
           <div className="flex flex-col ">
             <label className="w-fit" htmlFor="desc">
@@ -125,7 +118,7 @@ const Profile = () => {
               onChange={handelChange}
               name="desc"
               id="desc"
-            />
+              />
           </div>
           <div className="flex flex-col ">
             <label className="w-fit" htmlFor="RazorPayId">
@@ -138,7 +131,7 @@ const Profile = () => {
               onChange={handelChange}
               value={User.razorPayid}
               id="RazorPayId"
-            />
+              />
           </div>
           <div className="flex flex-col ">
             <label className="w-fit" htmlFor="RazorPaySecret">
@@ -162,6 +155,7 @@ const Profile = () => {
         </div>
       </form>
     </div>
+              </>
   );
 };
 

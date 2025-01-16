@@ -50,6 +50,21 @@ const PaymentPage = ({ params }) => {
       router.push("/login");
       return null; // Ensure nothing is rendered during the redirect
     }
+    if (!User.razorPaySecrete || !User.razorPayid ) {
+      toast.error("User RazorPay Secret or Id is not set. Can not pay!", {
+        position: "top-right",
+        autoClose: 5000,
+        hideProgressBar: false,
+        closeOnClick: false,
+        pauseOnHover: true,
+        draggable: true,
+        progress: undefined,
+        theme: "dark",
+        transition: Bounce,
+      });
+      return null
+    }
+    
     let a = await initiate(amount * 100, params.username, paymentForm);
     let oid = a.id;
     var options = {
