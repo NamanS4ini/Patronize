@@ -46,7 +46,7 @@ const Profile = () => {
               Name
             </label>
             <input
-              className="bg-[#414248] rounded-lg outline-none p-2 focus:border-blue-900 focus:border-2 h-8 w-96"
+              className="bg-[#414248] rounded-lg outline-none  p-2 focus:border-blue-900 focus:border-2 h-8 w-80 sm:w-96"
               value={User.name}
               name="name"
               onChange={handelChange}
@@ -59,7 +59,7 @@ const Profile = () => {
               Email
             </label>
             <input
-              className="bg-[#646566] rounded-lg outline-none p-2 focus:border-blue-900 focus:border-2 h-8 w-96"
+              className="bg-[#646566] rounded-lg outline-none  p-2 focus:border-blue-900 focus:border-2 h-8 w-80 sm:w-96"
               value={User.email}
               name="email"
               disabled
@@ -73,7 +73,7 @@ const Profile = () => {
               Username
             </label>
             <input
-              className="bg-[#414248] rounded-lg outline-none p-2 focus:border-blue-900 focus:border-2 h-8 w-96"
+              className="bg-[#414248] rounded-lg outline-none  p-2 focus:border-blue-900 focus:border-2 h-8 w-80 sm:w-96"
               value={User.username}
               name="username"
               onChange={handelChange}
@@ -86,7 +86,7 @@ const Profile = () => {
               Profile Picture
             </label>
             <input
-              className="bg-[#414248] rounded-lg outline-none p-2 focus:border-blue-900 focus:border-2 h-8 w-96"
+              className="bg-[#414248] rounded-lg outline-none  p-2 focus:border-blue-900 focus:border-2 h-8 w-80 sm:w-96"
               value={User.profilePicture}
               onChange={handelChange}
               name="profilePicture"
@@ -99,7 +99,7 @@ const Profile = () => {
               Cover Picture
             </label>
             <input
-              className="bg-[#414248] rounded-lg outline-none p-2 focus:border-blue-900 focus:border-2 h-8 w-96"
+              className="bg-[#414248] rounded-lg outline-none  p-2 focus:border-blue-900 focus:border-2 h-8 w-80 sm:w-96"
               value={User.coverPicture}
               type="text"
               onChange={handelChange}
@@ -112,7 +112,7 @@ const Profile = () => {
               Description
             </label>
             <input
-              className="bg-[#414248] rounded-lg outline-none p-2 focus:border-blue-900 focus:border-2 h-8 w-96"
+              className="bg-[#414248] rounded-lg outline-none  p-2 focus:border-blue-900 focus:border-2 h-8 w-80 sm:w-96"
               value={User.desc}
               type="text"
               onChange={handelChange}
@@ -125,7 +125,7 @@ const Profile = () => {
               RazorPay Id
             </label>
             <input
-              className="bg-[#414248] rounded-lg outline-none p-2 focus:border-blue-900 focus:border-2 h-8 w-96"
+              className="bg-[#414248] rounded-lg outline-none  p-2 focus:border-blue-900 focus:border-2 h-8 w-80 sm:w-96"
               type="text"
               name="razorPayid"
               onChange={handelChange}
@@ -138,7 +138,7 @@ const Profile = () => {
               RazorPay Secret
             </label>
             <input
-              className="bg-[#414248] rounded-lg outline-none p-2 focus:border-blue-900 focus:border-2 h-8 w-96"
+              className="bg-[#414248] rounded-lg outline-none  p-2 focus:border-blue-900 focus:border-2 h-8 w-80 sm:w-96"
               type="text"
               name="razorPaySecrete"
               onChange={handelChange}
@@ -158,5 +158,7 @@ const Profile = () => {
               </>
   );
 };
+
+
 
 export default Profile;

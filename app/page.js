@@ -38,34 +38,34 @@ const HomePage = () => {
         <div className="flex justify-around mx-auto w-[90%] max-w-screen-2xl">
           <span className="flex flex-col gap-3 items-center">
             <img
-              className="rounded-full h-32 object-cover w-32"
+              className="rounded-full md:h-32 h-20 w-20 object-cover md:w-32"
               src="/typing.gif"
               alt=""
             />
-            <h1 className="font-bold text-xl">Support Creators You Love</h1>
-            <p className="text-md">
+            <h1 className="font-bold text-center md:text-left p-2 md:p-0 text-sm md:text-xl">Support Creators You Love</h1>
+            <p className="text-center md:text-left p-2 md:p-0 text-sm md:text-base">
               Help your favorite creators grow by funding their projects.
             </p>
           </span>
           <span className="flex flex-col gap-3 items-center">
             <img
-              className="rounded-full h-32 object-cover w-32"
+              className="rounded-full md:h-32 h-20 w-20 object-cover md:w-32"
               src="/coin.gif"
               alt=""
             />
-            <h1 className="font-bold text-xl">Easy & Transparent</h1>
-            <p className="text-md">
+            <h1 className="font-bold text-center md:text-left p-2 md:p-0 text-sm md:text-xl">Easy & Transparent</h1>
+            <p className="text-center md:text-left p-2 md:p-0 text-sm md:text-base">
               Connect with creators simply and transparently.
             </p>
           </span>
           <span className="flex flex-col gap-3 items-center">
             <img
-              className="rounded-full h-32 object-cover w-32"
+              className="rounded-full md:h-32 h-20 w-20 object-cover md:w-32"
               src="/comm.gif"
               alt=""
             />
-            <h1 className="font-bold text-xl">Build a Community</h1>
-            <p className="text-md">
+            <h1 className="font-bold text-center md:text-left p-2 md:p-0 text-sm md:text-xl">Build a Community</h1>
+            <p className="text-center md:text-left p-2 md:p-0 text-sm md:text-base">
               Join a thriving network of creators and supporters.
             </p>
           </span>
@@ -77,34 +77,34 @@ const HomePage = () => {
         <div className="flex justify-around mx-auto w-[90%] max-w-screen-2xl">
           <span className="flex flex-col gap-3 items-center">
             <img
-              className="rounded-full h-32 object-cover w-32"
+              className="rounded-full md:h-32 h-20 w-20 object-cover md:w-32"
               src="/rocket.gif"
               alt=""
             />
-            <h1 className="font-bold text-xl">Our Mission</h1>
-            <p className="text-md">
+            <h1 className="font-bold text-center md:text-left p-2 md:p-0 text-sm md:text-xl">Our Mission</h1>
+            <p className="text-center md:text-left p-2 md:p-0 text-sm md:text-base">
             Empower creators to bring their ideas to life with community support.
             </p>
           </span>
           <span className="flex flex-col gap-3 items-center">
             <img
-              className="rounded-full h-32 object-cover w-32"
+              className="rounded-full md:h-32 h-20 w-20 object-cover md:w-32"
               src="/whyus.gif"
               alt=""
             />
-            <h1 className="font-bold text-xl">Why Choose Us</h1>
-            <p className="text-md">
+            <h1 className="font-bold text-center md:text-left p-2 md:p-0 text-sm md:text-xl">Why Choose Us</h1>
+            <p className="text-center md:text-left p-2 md:p-0 text-sm md:text-base">
             Transparent, creator-focused, and easy-to-use platform.
             </p>
           </span>
           <span className="flex flex-col gap-3 items-center">
             <img
-              className="rounded-full h-32 object-fill w-32"
+              className="rounded-full md:h-32 h-20 w-20 object-fill md:w-32"
               src="/offer.gif"
               alt=""
             />
-            <h1 className="font-bold text-xl">What We Offer</h1>
-            <p className="text-md">
+            <h1 className="font-bold text-center md:text-left p-2 md:p-0 text-sm md:text-xl">What We Offer</h1>
+            <p className="text-center md:text-left p-2 md:p-0 text-sm md:text-base">
             Tools to connect, fund, and grow together with your audience.
             </p>
           </span>

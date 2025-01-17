@@ -7,8 +7,8 @@ const Login = () => {
         return <>
         <div className="flex flex-col justify-center min-h-[calc(100vh-128px)] gap-20 items-center">
 
-        <h1 className="font-bold text-3xl mt-10">Welcome to Patronize! Join the community of creators and supporters.</h1>
-        <h1 className="text-3xl mt-10">You are Currently
+        <h1 className="font-bold p-4 md:text-left text-center text-xl md:text-3xl mt-10">Welcome to Patronize! Join the community of creators and supporters.</h1>
+        <h1 className=" p-4 md:text-left text-center text-xl md:text-3xl mt-10">You are Currently
           Signed in as {session.user.name} ({session.user.email})
         </h1>
         <button onClick={()=>signOut()} className="relative font-bold inline-flex items-center justify-center p-0.5 mb-2 me-2 overflow-hidden text-sm text-gray-900 rounded-lg group bg-gradient-to-br from-red-500 to-pink-400 group-hover:from-red-500 group-hover:to-pink-400 hover:text-white dark:text-white focus:ring-4 focus:outline-none focus:ring-red-200 dark:focus:ring-red-800">
@@ -22,7 +22,7 @@ Log Out
   return (
     <>
       <div className="flex flex-col justify-center h-[calc(100vh-128px)] gap-20 items-center">
-        <h1 className="font-bold text-3xl mt-10">Welcome to Patronize! Join the community of creators and supporters.</h1>
+        <h1 className="font-bold p-4 md:text-left text-center text-xl md:text-3xl mt-10">Welcome to Patronize! Join the community of creators and supporters.</h1>
         <div>
             
         

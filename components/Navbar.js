@@ -12,7 +12,7 @@ const Navbar = () => {
         <div className="font-bold text-xl">
           <div className="flex items-center gap-2">
             <Image src="/favicon.ico" width={40} height={40} alt="logo" />
-            <span>Patronize</span>
+            <span className="sm:block hidden">Patronize</span>
           </div>
         </div>
       </Link>

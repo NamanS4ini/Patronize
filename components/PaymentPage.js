@@ -2,7 +2,7 @@
 import React, { useEffect } from "react";
 import Script from "next/script";
 import Image from "next/image";
-import { ToastContainer,toast, Bounce} from "react-toastify";
+import { ToastContainer, toast, Bounce } from "react-toastify";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import { useRouter, notFound } from "next/navigation";
@@ -44,13 +44,13 @@ const PaymentPage = ({ params }) => {
         theme: "dark",
         transition: Bounce,
       });
-      return null
+      return null;
     }
     if (!session) {
       router.push("/login");
       return null; // Ensure nothing is rendered during the redirect
     }
-    if (!User.razorPaySecrete || !User.razorPayid ) {
+    if (!User.razorPaySecrete || !User.razorPayid) {
       toast.error("User RazorPay Secret or Id is not set.  Can not pay!", {
         position: "top-right",
         autoClose: 5000,
@@ -62,26 +62,29 @@ const PaymentPage = ({ params }) => {
         theme: "dark",
         transition: Bounce,
       });
-      return null
+      return null;
     }
-    
+
     let a = await initiate(amount * 100, params.username, paymentForm);
     console.log(a);
     if (a.statusCode == 401) {
-      toast.error(`${a.error.description}. User's RazorPay secret or Id may be invalid`, {
-        position: "top-right",
-        autoClose: 5000,
-        hideProgressBar: false,
-        closeOnClick: false,
-        pauseOnHover: true,
-        draggable: true,
-        progress: undefined,
-        theme: "dark",
-        transition: Bounce,
-      });
-      return null
+      toast.error(
+        `${a.error.description}. User's RazorPay secret or Id may be invalid`,
+        {
+          position: "top-right",
+          autoClose: 5000,
+          hideProgressBar: false,
+          closeOnClick: false,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+          theme: "dark",
+          transition: Bounce,
+        }
+      );
+      return null;
     }
-    
+
     let oid = a.id;
     var options = {
       key: User.razorPayid, // Enter the Key ID generated from the Dashboard
@@ -138,7 +141,7 @@ const PaymentPage = ({ params }) => {
       <div className="min-h-[calc(100vh-128px)]">
         <div className="cover w-full pt-[25%] relative h-32">
           <Image
-            src={User.coverPicture?User.coverPicture: "/cover.jpg"}
+            src={User.coverPicture ? User.coverPicture : "/cover.jpg"}
             alt="cover"
             fill={true}
             objectFit="cover"
@@ -146,7 +149,7 @@ const PaymentPage = ({ params }) => {
           />
           <Image
             className="absolute bottom-[-60px] left-1/2 translate-x-[-50%] rounded-xl"
-            src={User.profilePicture?User.profilePicture:"/pfp.jpg"}
+            src={User.profilePicture ? User.profilePicture : "/pfp.jpg"}
             alt="pfp"
             height={120}
             width={120}
@@ -155,35 +158,39 @@ const PaymentPage = ({ params }) => {
         <div className="user flex flex-col items-center mt-16">
           <h1 className="text-3xl font-bold">{params.username}</h1>
           <p className="text-md text-[#efefef] ">
-            {User.desc?User.desc:"No description"}
+            {User.desc ? User.desc : "No description"}
           </p>
           <p className="text-md text-[#efefef] ">
-            {Payment.length} Payments has raised  ₹{Payment.reduce((a,b)=> a+b.amount,0)/100}
+            {Payment.length} Payments has raised ₹
+            {Payment.reduce((a, b) => a + b.amount, 0) / 100}
           </p>
         </div>
         <div className="h-px bg-blue-600 rounded-full my-10 w-[90%] mx-auto"></div>
-        <div className="paymentArea pb-10 flex gap-9 justify-center ">
-          <div className="suppoters max-w-[700px]  w-1/2">
+        <div className="paymentArea pb-10 md:flex-row flex-col flex gap-9 justify-center ">
+          <div className="suppoters max-w-[700px] md:mx-0 mx-auto w-full px-4 md:px-0 md:w-1/2">
             <ul className="border-2 flex flex-col gap-5 h-full max-h-96 overflow-x-hidden overflow-scroll w-full border-[#414248] rounded-lg p-4">
-              {Payment.length >= 1? Payment.map((pay) => {
-                return (
-                  <li className="flex items-center gap-5 ">
-                    <span className="w-1/3 min-w-40">
-                      {pay.name} donated{" "}
-                      <span className="font-bold text-green-300">
-                        ₹{pay.amount / 100}
+              {Payment.length >= 1 ? (
+                Payment.map((pay) => {
+                  return (
+                    <li className="flex items-center gap-5 ">
+                      <span className="w-1/3 min-w-40">
+                        {pay.name} donated{" "}
+                        <span className="font-bold text-green-300">
+                          ₹{pay.amount / 100}
+                        </span>
                       </span>
-                    </span>
-                    <div className="min-w-px h-6 bg-gray-600"></div>
-                    <span className=" text-gray-300">{pay.message}</span>
-                  </li>
-                );
-              }):
+                      <div className="min-w-px h-6 bg-gray-600"></div>
+                      <span className=" text-gray-300">{pay.message}</span>
+                    </li>
+                  );
+                })
+              ) : (
                 <li className="flex h-full items-center justify-center gap-5 ">
-                  <span className="text-gray-400">No Payment Yep. Be the first to make a Payment! :)</span>
-              </li>
-              }
-              
+                  <span className="text-gray-400">
+                    No Payment Yep. Be the first to make a Payment! :)
+                  </span>
+                </li>
+              )}
 
               {/* <li className="flex items-center gap-5 ">
                 <span className="w-1/3 min-w-40">
@@ -195,7 +202,7 @@ const PaymentPage = ({ params }) => {
               </li> */}
             </ul>
           </div>
-          <div className="makePayment border-[#414248] w-96 border-2 rounded-lg p-4">
+          <div className="makePayment md:mx-0 mx-auto border-[#414248] w-96 border-2 rounded-lg p-4">
             <h1 className="text-xl font-bold mb-4">Make a Payment</h1>
             <div className="flex flex-col mb-4 gap-4">
               <input
